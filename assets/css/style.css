@@ -170,6 +170,7 @@ main {
 /* #SIDEBAR */
 #logo-big {
     display: none;
+    max-width: 10rem;
     /* Test movimento sticky, eventualmente da fare in metodo Web App */
     /* position: sticky;
     padding-bottom: 1rem;
@@ -215,6 +216,7 @@ main {
     padding: 1rem 0 0;
 }
 .add-playlist {
+    font-size: 1.5rem;
     font-weight: bold;
     color: #000;
     background-color: #A3A3A3;
@@ -250,7 +252,7 @@ main {
 /* SMALL */
 @media screen and (min-width: 576px) {
     :root {
-        --sidebar-width: 10rem;
+        --sidebar-width: 15rem;
     }
     /* #SIDEBAR */
     #logo-big {
