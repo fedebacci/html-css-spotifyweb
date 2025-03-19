@@ -6,7 +6,7 @@
 }
 /* Mettere come classe .img-fluid se necessario */
 img {
-    display: block;
+    /* display: block; */
     max-width: 100%;
 }
 a {
@@ -108,6 +108,7 @@ section {
 
 /* MACROSTRUTTURA */
 body {
+    font-family: sans-serif;
     background-color: #141922;
     color: #A3A3A3;
 }
@@ -168,7 +169,18 @@ main {
 #logo-small {
     margin-bottom: 1rem;
 }
-.sidebar-menu ul {
+.sidebar-main nav a,
+.install-app,
+.profile {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.sidebar-menu {
+    margin: 2rem 0;
+}
+.sidebar-menu ul,
+.sidebar-playlist ul {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -182,6 +194,16 @@ main {
 }
 .sidebar-playlist {
     display: none;
+}
+.add-playlist {
+    font-weight: bold;
+    color: #000;
+    background-color: #A3A3A3;
+    width: 2rem;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .sidebar-footer {
     display: flex;
@@ -201,4 +223,40 @@ main {
     aspect-ratio: 1/1;
     border-radius: 50%;
     overflow: hidden;
+}
+
+
+
+/* SMALL */
+@media screen and (min-width: 576px) {
+    :root {
+        --sidebar-width: 10rem;
+    }
+    /* #SIDEBAR */
+    #logo-big {
+        display: block;
+    }
+    #logo-small {
+        display: none;
+    }
+    .sidebar-playlist {
+        display: block;
+    }
+    .sidebar-menu ul,
+    .sidebar-playlist ul,
+    .sidebar-footer {
+        align-items: flex-start;
+    }
+    .sidebar-menu .label,
+    .sidebar-footer .label {
+        display: inline-block;
+    }
+}
+/* MEDIUM */
+@media screen and (min-width: 768px) {
+    /* #SIDEBAR */
+}
+/* LARGE */
+@media screen and (min-width: 992px) {
+    /* #SIDEBAR */
 }
