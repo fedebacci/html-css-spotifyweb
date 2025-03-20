@@ -110,6 +110,7 @@ section {
 /* MACROSTRUTTURA */
 body {
     font-family: sans-serif;
+    font-weight: 900;
     background-color: #141922;
     color: #A3A3A3;
 }
@@ -251,10 +252,8 @@ main {
 /* #PLAYER */
 /* Struttura flex Player */
 #player {
+    padding: 0 .25rem;
     display: flex;
-
-    /* Debug */
-    text-align: center;
 }
 #player .current-song,
 #player .player-options {
@@ -283,7 +282,7 @@ main {
 #player .player-options {
     justify-content: flex-end;
 }
-/* Resto sul player */
+/* Tutto il Resto sul player */
 #player .current-song {
     gap: .75rem;
 }
@@ -301,34 +300,40 @@ main {
     font-size: .75rem;
 }
 #player .control-buttons {
+    align-items: center;
     gap: 1rem;
 }
-#player .fa-circle-play {
-    font-size: 1.5rem;
+#player i:not(.fa-circle-play) {
+    font-size: .75rem;
+}
+#player i.fa-circle-play {
+    font-size: 1.25rem;
 }
 #player .song-times {
-    gap: .5rem;
+    gap: .33rem;
 }
 #player .song-times .song-time {
-    font-size: .6rem;
+    font-size: .5rem;
 }
 
 #player .bar {
-    height: 2px;
-    background-color: #000;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #595959;
     /* flex-grow: 1; */
     flex-shrink: 0;
 }
 #player .control-bar {
-    width: 100px;
+    width: 66px;
 }
 #player .volume-bar {
-    width: 50px;
+    width: 33px;
 }
 #player .bar .bar-inside {
+    border-radius: 4px;
     width: 50%;
     height: 100%;
-    background-color: #ccc;
+    background-color: #C5C5C5;
 }
 
 #player .player-options {
