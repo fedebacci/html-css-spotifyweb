@@ -374,10 +374,24 @@ main {
     .sidebar-footer .label {
         display: inline-block;
     }
+
+
+
+    /* #PLAYER */
+    #player .song-details :not(:first-child) {
+        display: inline-block;
+    }
 }
 /* MEDIUM */
 @media screen and (min-width: 768px) {
     /* #SIDEBAR */
+
+
+
+    /* #PLAYER */
+    #player .song-actions div {
+        display: inline-block;
+    }
 }
 /* LARGE */
 @media screen and (min-width: 992px) {
