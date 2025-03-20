@@ -249,6 +249,7 @@ main {
 }
 
 /* #PLAYER */
+/* Struttura flex Player */
 #player {
     display: flex;
 
@@ -266,13 +267,14 @@ main {
 #player .song-info,
 #player .player-controls,
 #player .control-buttons,
-#player .control-bar,
+#player .song-times,
 #player .player-options {
     display: flex;
     align-items: center;
 }
 #player .player-controls {
     flex-direction: column;
+    justify-content: space-evenly;
 }
 #player .control-buttons,
 #player .control-bar {
@@ -281,8 +283,57 @@ main {
 #player .player-options {
     justify-content: flex-end;
 }
+/* Resto sul player */
+#player .current-song {
+    gap: .75rem;
+}
+#player .song-info {
+    gap: .5rem;
+}
+#player .song-media {
+    width: 20px;
+}
+#player .song-details {
+    font-size: .6rem;
+}
+#player .song-actions i,
+#player .player-options i {
+    font-size: .75rem;
+}
+#player .control-buttons {
+    gap: 1rem;
+}
+#player .fa-circle-play {
+    font-size: 1.5rem;
+}
+#player .song-times {
+    gap: .5rem;
+}
+#player .song-times .song-time {
+    font-size: .6rem;
+}
 
+#player .bar {
+    height: 2px;
+    background-color: #000;
+    /* flex-grow: 1; */
+    flex-shrink: 0;
+}
+#player .control-bar {
+    width: 100px;
+}
+#player .volume-bar {
+    width: 50px;
+}
+#player .bar .bar-inside {
+    width: 50%;
+    height: 100%;
+    background-color: #ccc;
+}
 
+#player .player-options {
+    gap: .5rem;
+}
 
 
 
