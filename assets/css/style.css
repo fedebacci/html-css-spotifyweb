@@ -22,10 +22,9 @@ ul {
 /* DEBUG */
 .debug ,
 .debug * {
-    min-height: 50px;
-    /* padding: 5px; */
+    min-width: 20px;
+    min-height: 20px;
     background-color: #ff000022;
-    /* border: 2px dashed red; */
     outline: 1px solid red;
 }
 
@@ -245,6 +244,23 @@ main {
     aspect-ratio: 1/1;
     border-radius: 50%;
     overflow: hidden;
+}
+
+/* #PLAYER */
+#player {
+    display: flex;
+    gap: 1rem;
+}
+#player .current-song,
+#player .song-info,
+#player .control-buttons,
+#player .control-bar,
+#player .player-options {
+    display: flex;
+    align-items: center;
+}
+#player .control-bar {
+    justify-content: center;
 }
 
 
