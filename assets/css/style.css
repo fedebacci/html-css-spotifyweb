@@ -22,8 +22,10 @@ ul {
 /* DEBUG */
 .debug ,
 .debug * {
-    min-width: 20px;
-    min-height: 20px;
+    /* min-width: 20px;
+    min-height: 20px; */
+    min-width: 10px;
+    min-height: 10px;
     background-color: #ff000022;
     outline: 1px solid red;
 }
@@ -249,19 +251,46 @@ main {
 /* #PLAYER */
 #player {
     display: flex;
-    gap: 1rem;
+
+    /* Debug */
+    text-align: center;
+}
+#player .current-song,
+#player .player-options {
+    flex: 1 0 0;
+}
+#player .player-controls {
+    flex: 0 0 auto;
 }
 #player .current-song,
 #player .song-info,
+#player .player-controls,
 #player .control-buttons,
 #player .control-bar,
 #player .player-options {
     display: flex;
     align-items: center;
 }
+#player .player-controls {
+    flex-direction: column;
+}
+#player .control-buttons,
 #player .control-bar {
     justify-content: center;
 }
+#player .player-options {
+    justify-content: flex-end;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
