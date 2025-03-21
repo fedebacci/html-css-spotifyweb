@@ -52,11 +52,11 @@ section {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin: calc(var(--col-spacing) * -1) 0;
+    margin: 0 calc(var(--col-spacing) * -1); 
     row-gap: calc(2 * var(--col-spacing));
 }
 .row [class*="col"] {
-    padding: var(--col-spacing) 0;
+    padding: 0 var(--col-spacing);
 }
 .row-no-gap {
     display: flex;
@@ -103,6 +103,12 @@ section {
     display: inline-block;
     background-color: transparent;
     border: 0;
+    padding: .5rem 1rem;
+}
+.btn-outline {
+    color: #fff;
+    border: 1px solid;
+    border-radius: 2rem;
 }
 
 
@@ -170,6 +176,11 @@ main {
 
 
 /* #SIDEBAR */
+/* @ TODO */
+/* Incorporare il font size in modo generale sul body invece che su ogni singolo elemento */
+#sidebar {
+    font-size: .75rem;
+}
 #logo-big {
     display: none;
     max-width: 10rem;
@@ -249,6 +260,10 @@ main {
     overflow: hidden;
 }
 
+
+
+
+
 /* #PLAYER */
 /* Struttura flex Player */
 #player {
@@ -257,6 +272,9 @@ main {
 }
 #player .current-song,
 #player .player-options {
+    /* @ TODO */
+    /* @ Testare, come in correzione, 1 1 0 */
+    /* @ E magari dare grow: 2 ai controlli su schermi più grandi */
     flex: 1 0 0;
 }
 #player .player-controls {
@@ -290,7 +308,7 @@ main {
     gap: .5rem;
 }
 #player .song-media {
-    width: 20px;
+    width: 25px;
 }
 #player .song-details {
     font-size: .6rem;
@@ -341,6 +359,65 @@ main {
 }
 
 
+
+/* #MAIN-CONTENT */
+/* @ TODO */
+/* Incorporare il font size in modo generale sul body invece che su ogni singolo elemento */
+#main-content {
+    /* font-size: .75rem; */
+    font-size: .6rem;
+}
+#main-content .upgrade-app {
+    /* Campionato */
+    /* background-color: #0F141D; */
+    /* Realistico */
+    background-color: rgba(0,0,0,0.33);
+    padding: 1rem .25rem;
+    text-align: right;
+}
+.btn-upgrade-app {
+    text-transform: uppercase;
+
+    padding: .5rem 2rem;;
+
+    /* @todo */
+    /* capire come mai non le eredita dal body */
+    font-weight: 900;
+    font-size: .6rem;
+}
+
+#main-content #main-content-menu  {
+    padding: .75rem;
+}
+#main-content #main-content-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem;
+    row-gap: 1rem;
+}
+#main-content #main-content-menu a {
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: .25rem;
+
+    /* debug */
+    /* border: 1px solid; */
+}
+
+/* Non faccio classe apposita perchè non ho altri container da altre parti */
+#main-content .container {
+    --col-spacing: .25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: .5rem;
+}
+#main-content .container .row {
+    row-gap: .5rem;
+    margin: 0;
+}
+/* #main-content .container [class^="col"] {
+} */
 
 
 
