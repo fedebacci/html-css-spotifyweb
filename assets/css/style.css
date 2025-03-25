@@ -46,7 +46,8 @@ section {
     padding: calc(2 * var(--col-spacing)) 0;
 }
 .container {
-    max-width: 1200px;
+    /* In questo caso serve senza max-width, ma non sto a creare container-fluid perchè sarebbe inutile avere entrambe le versioni */
+    /* max-width: 1200px; */
     margin: 0 auto;
 }
 .row {
@@ -112,7 +113,6 @@ section {
 }
 
 
-
 /* MACROSTRUTTURA */
 body {
     font-family: sans-serif;
@@ -155,9 +155,11 @@ main {
     flex-direction: column;
     justify-content: space-between;
 
-    padding: .75rem;
-
     overflow: auto;
+
+    /* Correzione: per avere effetto voci menu attive devo rimuovere padding dx e sx */
+    /* padding: .75rem; */
+    padding: .75rem 0;
 }
 #player {
     background-color: #282828;
@@ -180,7 +182,16 @@ main {
 /* Incorporare il font size in modo generale sul body invece che su ogni singolo elemento */
 #sidebar {
     font-size: .75rem;
+
+    gap: .5rem;
 }
+/* Padding agli elementi interni della sidebar che sostituisce padding laterale della sidebar stessa */
+#sidebar .logo,
+#sidebar .sidebar-playlist,
+#sidebar .sidebar-footer {
+    padding: 0 .75rem;
+}
+
 #logo-big {
     display: none;
     max-width: 10rem;
@@ -191,27 +202,44 @@ main {
     background-color: #000; */
 }
 #logo-small {
-    margin-bottom: 1rem;
+    /* Correzione. lo gestisco tramite gap di #sidebar */
+    /* margin-bottom: 1rem; */
     background-color: #000;
 }
-.sidebar-main nav a,
+/* Correzione: rimozione sidebar-main ed inserimento dei suoi figli direttamente nella sidebar (Corretto con selettore subito sotto a quello commentato) */
+/* .sidebar-main nav a, */
+#sidebar nav a,
 .install-app,
 .profile {
     display: flex;
     align-items: center;
     gap: .5rem;
 }
-.sidebar-menu {
+/* Correzione: lo gestisco tramite gap di sidebar */
+/* .sidebar-menu {
     margin: 2rem 0;
-}
+} */
+/* DEBUG TMP, non dovrebbe servire */
+/* .sidebar-playlist {
+    margin: 0 0 2rem;
+} */
 .sidebar-menu ul,
 .sidebar-playlist ul {
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+    /* Correzione: utilizzo del text-align per allineare gli elementi mantenendoli stretchati (necessario per classe .active) */
+    /* align-items: center; */
+    text-align: center;
 }
 .sidebar-menu ul {
     gap: .5rem;
+}
+.sidebar-menu ul li {
+    padding-left: .75rem;
+}
+.sidebar-menu ul li.active {
+    color: #fff;
 }
 .sidebar-menu ul img {
     width: 1.5rem;
@@ -221,14 +249,19 @@ main {
 }
 .sidebar-playlist {
     display: none;
-}
-.sidebar-playlist ul {
-    gap: 1rem;
-}
-.sidebar-playlist li:first-child {
-    padding: 1rem 0 0;
+
+    /* @ TEST */
+    /* @ SPOSTARE SICURAMENTE OVERFLOW, forse anche min-height */
+    min-height: 150px;
+    overflow: hidden;
 }
 .add-playlist {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem 0;
+}
+.add-playlist span {
     font-size: 1.5rem;
     font-weight: bold;
     color: #000;
@@ -239,12 +272,29 @@ main {
     justify-content: center;
     align-items: center;
 }
+.sidebar-playlist nav.playlists {
+    height: 100%;
+}
+.sidebar-playlist ul {
+    height: 100%;
+    overflow: auto;
+    gap: 1rem;
+}
+.sidebar-playlist li:first-child {
+    padding: 1rem 0 0;
+}
 .sidebar-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: .5rem;
-    margin-top: 3rem;
+
+    /* Come da correzione, rimuovendo il sidebar-main vado a dare margin-top: auto */
+    /* margin-top: 3rem; */
+    margin-top: auto;
+
+    /* DEBUG */
+    /* margin-top: 7rem; */
 }
 .sidebar-footer .label {
     display: none;
@@ -269,16 +319,28 @@ main {
 #player {
     padding: 0 .25rem;
     display: flex;
+
+    /* Da correzione */
+    gap: .5rem;
+    justify-content: space-between;
+    align-items: center;
 }
 #player .current-song,
+#player .player-controls,
 #player .player-options {
     /* @ TODO */
     /* @ Testare, come in correzione, 1 1 0 */
     /* @ E magari dare grow: 2 ai controlli su schermi più grandi */
-    flex: 1 0 0;
+    /* flex: 1 0 0; */
+    flex: 1 1 0;
+}
+/* Implementazione del controllo delle dimensioni dei primogeniti laterali per soluzione consigliata da Tiziano */
+#player .current-song,
+#player .player-options {
+    max-width: 250px;
 }
 #player .player-controls {
-    flex: 0 0 auto;
+    max-width: 400px;
 }
 #player .current-song,
 #player .song-info,
@@ -292,6 +354,7 @@ main {
 #player .player-controls {
     flex-direction: column;
     justify-content: space-evenly;
+    gap: .5rem;
 }
 #player .control-buttons,
 #player .control-bar {
@@ -299,19 +362,40 @@ main {
 }
 #player .player-options {
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 /* Tutto il Resto sul player */
 #player .current-song {
-    gap: .75rem;
+    gap: .5rem;
 }
 #player .song-info {
     gap: .5rem;
+    /* Correzione, personalmente non userei a meno di non controllare la dimensione del primo figlio primogenito del player (altrimenti a volte sembra parte dei controlli centrali invece che dei dettagli della canzone a sx) */
+    /* Lo implemento ed implemento sopra la soluzione consigliata per il controllo delle dimensioni dei primogeniti laterali */
+    flex-grow: 1;
 }
-#player .song-media {
+/* Correggo sotto con versione più flessibile */
+/* #player .song-media {
     width: 25px;
+} */
+#player .song-media img {
+    display: block;
+    max-height: 50px;
 }
 #player .song-details {
     font-size: .6rem;
+
+    /* Correzione */
+    flex-grow: 1;
+}
+#player .song-details {
+    overflow: hidden;
+}
+#player .song-details div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* La regola sotto dovrebbe essere obbligatoria per MDN, ma commentandola l'effetto funziona */
+    /* white-space: nowrap; */
 }
 #player .song-actions i,
 #player .player-options i {
@@ -321,14 +405,24 @@ main {
     align-items: center;
     gap: 1rem;
 }
-#player i:not(.fa-circle-play) {
+/* Gestione della dimensione delle icone (e della differenza con icona centrale) senza inseriment classe font-awesome. Corretto aggiungendo la classe e la regola subito sotto */
+/* #player i:not(.fa-circle-play) {
     font-size: .75rem;
 }
 #player i.fa-circle-play {
     font-size: 1.25rem;
+} */
+#player .player-controls {
+    font-size: .75rem;
 }
 #player .song-times {
     gap: .33rem;
+    width: 90%;
+    justify-content: space-between;
+
+    /* Correzione */
+    justify-content: center;
+    align-items: center;
 }
 #player .song-times .song-time {
     font-size: .5rem;
@@ -338,15 +432,20 @@ main {
     height: 4px;
     border-radius: 4px;
     background-color: #595959;
-    /* flex-grow: 1; */
     flex-shrink: 0;
+
+    /* Soluzione per gestire fluidamente le progress bar, da associare a max-width su primogenito centrale (Quindi rimuovere width) */
+    flex-grow: 1;
+    /* Provo ad aggiungere max-width solo a barra del tempo */
+    /* NB: in correzione max-width data sui player-controls, non a barra */
+    /* max-width: 50%; */
 }
-#player .control-bar {
-    width: 66px;
+/* #player .control-bar {
+    width: 50%;
 }
 #player .volume-bar {
-    width: 33px;
-}
+    width: 33%;
+} */
 #player .bar .bar-inside {
     border-radius: 4px;
     width: 50%;
@@ -393,13 +492,13 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: .5rem;
+    /* gap: .5rem; */
     row-gap: 1rem;
 }
 #main-content #main-content-menu a {
     text-transform: uppercase;
     font-weight: 600;
-    padding: .25rem;
+    padding: .75rem;
 
     /* debug */
     /* border: 1px solid; */
@@ -426,9 +525,13 @@ main {
 /* Aggiungo margine a titolo che collassa se sottotitolo non presente e rimane se sottotitolo presente */
 #main-content h2 {
     margin-bottom: .5rem;
+    font-size: 1.25rem;
 }
 #main-content .song-card {
     text-align: center;
+}
+#main-content .song-card h3 {
+    font-size: .9rem;
 }
 
 
@@ -445,11 +548,18 @@ main {
         --sidebar-width: 15rem;
     }
     /* #SIDEBAR */
+    #sidebar {
+        gap: 2rem;
+    }
     #logo-big {
         display: block;
     }
     #logo-small {
         display: none;
+    }
+    .sidebar-menu ul li.active {
+        border-left: 5px solid green;
+        padding-left: calc(.75rem - 5px);
     }
     .sidebar-playlist {
         display: block;
@@ -470,6 +580,13 @@ main {
     #player .song-details :not(:first-child) {
         display: inline-block;
     }
+    #player .player-controls {
+        flex-grow: 2;
+    }
+    /* Corretto con max-height, questo step non serve più */
+    /* #player .song-media {
+        width: 50px;
+    } */
 }
 
 
